@@ -1,0 +1,63 @@
+@use "./mixin" as mixin;
+@use "../bootstrap_custom/custom_variables" as var;
+
+a.nav-link.active {
+  text-decoration: underline;
+}
+
+/*
+DrawerMenu
+- hambruger icon
+*/
+.bl_hambrugerIcon {
+  border-style: none;
+
+  border-radius: 0;
+  border-bottom-left-radius: 10px;
+  height: 50px;
+  width: 50px;
+  background-color: #393;
+}
+
+.bl_hambrugerIcon_barWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  &>span {
+    display: block;
+  }
+}
+
+/* ハンバーガーのバー */
+.el_hambrugerBar {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: white;
+  border-radius: calc(infinity * 1px);
+}
+
+/*
+  global menu panel
+*/
+.ly_globalMenuWholePanel {
+  display: none;
+
+  @include mixin.media(lg) {
+    display: block;
+  }
+}
+
+.ly_headerMenuNav {
+  transition-property: all 0.5s ease 0s;
+
+}
+
+.ly_headerMenuNav.ly_headerMenuNav__fixed {
+  position: fixed;
+  z-index: 100000;
+  top: 0;
+  right: 0;
+}

@@ -1,0 +1,9 @@
+@import "@bootstrap/scss/functions";
+@import "@bootstrap/scss/variables";
+
+$custom-colors: (
+  "kusu-main": #99fe99,
+  "kusu-sub" : #393,
+  "kusu-txt" : #630,
+);
+$theme-colors: map-merge($theme-colors, $custom-colors);

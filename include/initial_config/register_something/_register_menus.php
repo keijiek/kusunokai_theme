@@ -9,8 +9,6 @@ function register_menus()
   register_nav_menus([
     COMMON_MENU => COMMON_MENU,
     BOOTSTRAP_MENU => BOOTSTRAP_MENU,
-    DRAWER_MENU => DRAWER_MENU,
-    HEADER_MENU => HEADER_MENU,
     FOOTER_MENU => FOOTER_MENU
   ]);
 }
@@ -21,8 +19,8 @@ function register_menus()
  */
 function exchange_classes_to_nav_menu_items($classes, $item, $args, $depth)
 {
-  if ($args->theme_location === HEADER_MENU) {
-    $new_classes = ['border-end', 'border-light', 'border-1'];
+  if ($args->theme_location === BOOTSTRAP_MENU) {
+    $new_classes = ['nav-item'];
     if ($item->current) {
       $new_classes[] = 'active';
     }
@@ -39,11 +37,16 @@ add_filter('nav_menu_css_class', 'initial_config\exchange_classes_to_nav_menu_it
  */
 function add_classes_to_nav_menu_links($atts, $item, $args, $depth)
 {
-
-  if ($args->theme_location === HEADER_MENU) {
-    $atts['class'] = 'text-white btn btn-kusu-sub rounded-0';
+  $color_kusu = "link-kusu-txt link-underline-kusu-txt";
+  $color_blue = "link-underline text-primary";
+  $color = $color_blue;
+  if ($args->theme_location === BOOTSTRAP_MENU) {
+    $atts['class'] = 'nav-link py-1 py-lg-2 mx-lg-2 text-decoration-underline link-offset-2 ' . $color;
     if ($item->current) {
-      $atts['class'] .= ' active';
+      $atts['class'] .= ' active link-underline-opacity-100';
+      $atts['aria-current'] = 'page';
+    } else {
+      $atts['class'] .= ' link-underline-opacity-0 link-underline-opacity-100-hover';
     }
     return $atts;
   }

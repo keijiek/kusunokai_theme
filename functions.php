@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set("Asia/Tokyo");
 
 /**
  * 根幹にかかわる定数
@@ -21,16 +22,16 @@ define('TEMPLATE_FOOTER', '/templates/footer/footer');
 /** ************************************************************************
  * 定数2 : カスタム投稿タイプAと、それに関連付けられたフィールドなどのスラグ
  ************************************************************************ */
-/** メニュー */
+
+/** メニューのロケーション(theme_location) */
 define('COMMON_MENU', 'common_menu');
-define('BOOTSTRAP_MENU', 'bootstra_menu');
-define('DRAWER_MENU', 'drawer_nav_menu');
-define('HEADER_MENU', 'header_nav_menu');
-define('FOOTER_MENU', 'footer_nav_menu');
+define('BOOTSTRAP_MENU', 'bootstrap_menu');
+define('FOOTER_MENU', 'footer_menu');
 
 /** カスタム投稿 */
 define('POST_NEWS_LETTER', 'newsletters');
 define('POST_URGENT_NOTICE', 'urgent_notices');
+define('POST_NOTICE', 'notices');
 
 /** ************************************************************************
  * 初期設定

@@ -16,7 +16,6 @@ function enqueue_scripts()
   $is_in_development = true;
   enqueue_something('assets/dist/index.css', $front_css, [], $is_in_development);
   enqueue_something('assets/dist/index.js', $front_js, [], $is_in_development);
-  enqueue_something('assets/js/index.js', 'front_js_row', [], $is_in_development);
 }
 
 function enqueue_something(string $file_path, string $handler, array $depends = [], bool $is_in_development = false)

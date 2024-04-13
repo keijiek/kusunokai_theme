@@ -1,9 +1,29 @@
 @import "@bootstrap/scss/functions";
 @import "@bootstrap/scss/variables";
 
+/**
+色テーマの追加
+*/
 $custom-colors: (
   "kusu-main": #99fe99,
-  "kusu-sub" : #393,
-  "kusu-txt" : #630,
+  "kusu-sub": #393,
+  "kusu-txt": #630,
 );
 $theme-colors: map-merge($theme-colors, $custom-colors);
+
+/**
+余白のスケールを変更
+*/
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 2,
+  6: $spacer * 2.5,
+  7: $spacer * 3,
+  8: $spacer * 3.5,
+  9: $spacer * 4,
+);

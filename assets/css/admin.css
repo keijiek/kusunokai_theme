@@ -1,0 +1,15 @@
+.manage-column.column-newsletter_year,
+.manage-column.column-newsletter_month {
+  width: 4rem !important;
+}
+
+.newsletter_year.column-newsletter_year,
+.newsletter_month.column-newsletter_month {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.final_date_displaying.column-final_date_displaying {
+  font-weight: bold;
+  font-size: 1.5em;
+}

@@ -5047,50 +5047,31 @@ class Toast extends BaseComponent {
 }
 enableDismissTrigger(Toast);
 defineJQueryPlugin(Toast);
-function drawerMenuToggle(args) {
-  const { toggleId, menuId } = args;
-  const toggle = document.getElementById(toggleId);
-  const menu = document.getElementById(menuId);
-  if (!toggle || !menu)
+const displayedByScrolling = (args) => {
+  const targetElement = document.getElementById(args.targetID);
+  if (!targetElement) {
     return;
-  const arg_set = { toggle, menu };
-  toggle.addEventListener("click", () => {
-    toggleStates(arg_set);
-  });
-  window.addEventListener("resize", () => {
-    toCloseState(arg_set);
-  });
-}
-const toggleStates = (args) => {
-  if (args.toggle.ariaExpanded === "false") {
-    toOpenState(args);
-  } else {
-    toCloseState(args);
   }
+  initializeState(targetElement);
+  document.addEventListener("scroll", (e) => {
+    if (window.scrollY > args.threshold) {
+      appear(targetElement);
+    } else {
+      disappear(targetElement);
+    }
+  });
 };
-const toCloseState = (args) => {
-  const { toggle, menu } = args;
-  fixScroll(false);
-  toggle.ariaExpanded = "false";
-  menu.ariaHidden = "true";
-  menu.classList.add("d-none");
-  menu.classList.remove("d-block");
+const initializeState = (targetElement) => {
+  targetElement.classList.add("d-none");
 };
-const toOpenState = (args) => {
-  const { toggle, menu } = args;
-  fixScroll(true);
-  toggle.ariaExpanded = "true";
-  menu.ariaHidden = "false";
-  menu.classList.add("d-block");
-  menu.classList.remove("d-none");
+const appear = (targetElement) => {
+  targetElement.classList.add("d-block");
+  targetElement.classList.remove("d-none");
 };
-const fixScroll = (isFix) => {
-  if (isFix) {
-    document.body.style["overflow"] = "hidden";
-  } else {
-    document.body.style["overflow"] = "";
-  }
+const disappear = (targetElement) => {
+  targetElement.classList.add("d-none");
+  targetElement.classList.remove("d-block");
 };
 document.addEventListener("DOMContentLoaded", () => {
-  drawerMenuToggle({ toggleId: "js_drawerIcon", menuId: "js_drawerMenu" });
+  displayedByScrolling({ targetID: "js_returnToTopButton", threshold: 500 });
 });

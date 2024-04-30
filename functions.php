@@ -16,6 +16,7 @@ define('__IMG_DIR__',    get_template_directory_uri() . '/assets/images');
 define('__DIST_DIR__',   get_template_directory_uri() . '/assets/dist');
 define('__INC_DIR__',    get_template_directory_uri() . '/include');
 define('TEMPLATE_HEADER', '/templates/header/header');
+define('TEMPLATE_HEADER2', '/templates/header_v2/header');
 define('TEMPLATE_FOOTER', '/templates/footer/footer');
 
 

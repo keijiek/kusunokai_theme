@@ -58,7 +58,7 @@ class NewsletterDisplayer
   ?>
     <p class="<?= $fs ?>">
       <?= $this->bi_file_earmark_pdf($icon_size, 'text-danger') ?>
-      <a href="<?= $this->data->pdf_url() ?><?= $this->data->query_parameter() ?>"><?= $issue_title ?></a>
+      <a href="<?= $this->data->pdf_url() ?><?= $this->data->query_parameter() ?>"><?= $issue_title ?>（PDF）</a>
     </p>
   <?php
   }
@@ -66,6 +66,7 @@ class NewsletterDisplayer
   function thumbnail_html()
   {
   ?>
+    <p class="mb-2">↓表紙画像のクリックでもPDFが開きます。</p>
     <div class="row row-cols-1 row-cols-lg-2">
       <a class="d-block" href="<?= $this->data->pdf_url() ?><?= $this->data->query_parameter() ?>">
         <?= $this->data->thumbnail(ThumbSizes::full) ?>
@@ -183,8 +184,7 @@ function get_latest_newsletter(): array|false
 {
   $gp_args = get_post_args_base(1);
   $gp_args['orderby'] = [
-    'newsletter_year' => 'DESC',
-    'newsletter_month' => 'DESC',
+    'menu_order' => 'ASC'
   ];
   $result = get_posts($gp_args);
   if (count($result) < 1) {

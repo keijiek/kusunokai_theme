@@ -31,6 +31,17 @@ display_newesst_newsletter();
 display_notices();
 get_template_part(TEMPLATE_FOOTER);
 
+/**
+ * メインビジュアル部の表示
+ */
+function display_mainvisual_part(): void
+{
+?>
+  <section class="container-fluid">
+
+  </section>
+<?php
+}
 
 /** ************************************************************************
  * 導入部の表示

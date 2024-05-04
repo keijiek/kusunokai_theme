@@ -13,7 +13,12 @@ $header_dir = 'templates/header_v2';
       <h1>宮崎県楠の会</h1>
     </div>
     <div>
-      <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive">Toggle offcanvas</button>
+      <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+          <path stroke="white" stroke-width="0.7" fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+        </svg>
+        <span class="d-block">menu</span>
+      </button>
 
       <div class="offcanvas-lg offcanvas-end pt-4" tabindex="-1" id="offcanvasResponsive" aria-labelledby="offcanvasResponsiveLabel">
         <div class="offcanvas-header">
@@ -22,7 +27,7 @@ $header_dir = 'templates/header_v2';
         </div>
         <div class="offcanvas-body">
 
-          <?php echo bootstrap_navbar() ?>
+          <?= bootstrap_navbar() ?>
         </div>
       </div>
     </div>
@@ -36,11 +41,11 @@ $header_dir = 'templates/header_v2';
       {
         return wp_nav_menu([
           'theme_location' => COMMON_MENU,
-          'menu' => '',
-          'container' => 'div',
+          'container' => 'nav',
           'container_class' => '',
           'container_id' => '',
-          'menu_class' => '',
+          'menu' => '',
+          'menu_class' => 'list-unstyled d-flex flex-column flex-lg-row gap-2 ',
           // 'menu_id' => '',
           'container_aria_label' => 'グローバルメニュー',
           // 'fallback_cb' => 'wp_page_menu',

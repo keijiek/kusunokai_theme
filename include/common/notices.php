@@ -2,6 +2,8 @@
 
 namespace notices;
 
+use DateInterval;
+use DateTime;
 use DateTimeImmutable;
 use \WP_Post;
 
@@ -19,14 +21,38 @@ class NoticeDisplayer
     $flex_styles = "d-flex flex-row align-items-cente gap-2";
     $space_styles = "pt-4 pb-2 mb-0";
 ?>
-    <article class="mt-7">
-      <h3 class="mb-0"><?= $this->data->title() ?></h3>
+    <article class="mt-7 mb-4">
+      <h3 class="mb-0 d-flex flex-row align-items-center gap-2">
+        <span class="d-block">
+          <?= $this->data->title() ?>
+        </span>
+        <?php
+        if (is_new_notice($this->data->post_date_raw())) {
+        ?>
+          <span class="d-block badge rounded-pill bg-kusu-sub fs-6">new</span>
+        <?php
+        }
+        ?>
+      </h3>
       <p class="text-end text-light-emphasis mb-1"><?= $this->data->post_date() ?></p>
       <div class="mt-1">
         <?= $this->data->content() ?>
       </div>
     </article>
+    <hr>
 <?php
+  }
+}
+
+function is_new_notice(string $post_date, int $duration = 14): bool
+{
+  $modify_value = '+' . $duration . ' day';
+  $threshold = (new DateTimeImmutable($post_date, TIME_ZONE_JP))->modify($modify_value);
+  $now = new DateTimeImmutable('now', TIME_ZONE_JP);
+  if ($threshold >= $now) {
+    return true;
+  } else {
+    return false;
   }
 }
 
@@ -68,6 +94,11 @@ class Notice
   {
     // return $this->created_by_id ? : $this->wp_post->;
     return (new DateTimeImmutable($this->wp_post->post_date))->format('Y年n月d日');
+  }
+
+  function post_date_raw(): string
+  {
+    return $this->wp_post->post_date;
   }
 }
 

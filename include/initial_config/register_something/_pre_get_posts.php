@@ -6,7 +6,7 @@
 add_action('pre_get_posts', 'orderby_modified_posts');
 function orderby_modified_posts($query)
 {
-  // admin とフロントを分けて設定。こうしないと両方に効いてしまう。
+  // 管理画面とフロント側を分けて設定。こうしないと両方に効いてしまう。
   if (is_admin()) {
     return;
   } else {

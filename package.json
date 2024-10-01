@@ -11,10 +11,10 @@
   ],
   "devDependencies": {
     "@types/bootstrap": "^5.2.10",
-    "autoprefixer": "^10.4.19",
-    "sass": "^1.72.0",
-    "typescript": "^5.4.3",
-    "vite": "^5.2.3"
+    "autoprefixer": "^10.4.20",
+    "sass": "^1.79.4",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.8"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",

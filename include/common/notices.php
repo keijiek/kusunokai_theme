@@ -38,6 +38,19 @@ class NoticeDisplayer
       <div class="mt-1">
         <?= $this->data->content() ?>
       </div>
+      <?php
+      if ($this->data->pdf) {
+        $pdf_url = $this->data->pdf['url'];
+        $img_src = wp_get_attachment_image_src($this->data->pdf['ID'], 'large');
+      ?>
+        <div class="mt-3 row row-cols-1 row-cols-lg-2">
+          <a href="<?= $pdf_url ?>" class="d-block">
+            <img src="<?= $img_src[0] ?>" alt="" width="<?= $img_src[1] ?>" height="<?= $img_src[2] ?>" class="d-block w-100 h-auto object-fit-cover img-thumbnail" />
+          </a>
+        </div>
+      <?php
+      }
+      ?>
     </article>
     <hr>
 <?php
@@ -64,6 +77,7 @@ class Notice
   private bool $created_by_id = false;
   private int $id;
   private WP_Post $wp_post;
+  public  $pdf;
 
   function __construct(WP_Post|int $notice)
   {
@@ -75,6 +89,8 @@ class Notice
       $this->wp_post = $notice;
       $this->id = $notice->ID;
     }
+
+    $this->pdf = get_field('associated_pdf', $this->id) ? get_field('associated_pdf', $this->id) : false;
   }
 
 

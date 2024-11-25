@@ -50,4 +50,5 @@
     "assets/dist": false,
     "tsconfig.json": false,
   },
+  "npm.packageManager": "bun",
 }

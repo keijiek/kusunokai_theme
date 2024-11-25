@@ -55,9 +55,15 @@ function display_newsletter_list()
  */
 function display_notice_list()
 {
-  while (have_posts()) {
-    the_post();
-    (new NoticeDisplayer(get_the_ID()))->html();
+  if (have_posts()) {
+    while (have_posts()) {
+      the_post();
+      (new NoticeDisplayer(get_the_ID()))->html();
+    }
+    global $wp_query;
+    echo paginate_links([
+      'total' => $wp_query->max_num_pages,
+    ]);
   }
 }
 

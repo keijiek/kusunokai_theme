@@ -109,7 +109,7 @@ function display_newesst_newsletter()
 /** ************************************************************************
  * 「お知らせ」表示
  */
-function display_notices(int $number_of_display = 10)
+function display_notices(int $number_of_display = 5)
 {
   $notices = get_notices($number_of_display);
   // vardump($notices);

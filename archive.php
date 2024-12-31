@@ -60,10 +60,7 @@ function display_notice_list()
       the_post();
       (new NoticeDisplayer(get_the_ID()))->html();
     }
-    global $wp_query;
-    echo paginate_links([
-      'total' => $wp_query->max_num_pages,
-    ]);
+    pagination();
   }
 }
 
@@ -115,4 +112,37 @@ function display_nothing()
 ?>
   <p>投稿はありません。</p>
 <?php
+}
+
+
+function pagination(): void
+{
+  global $wp_query;
+  $big = 999999999; // 必須のユニークな数字
+
+  $pagination = paginate_links(array(
+    'base'      => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+    'format'    => '?paged=%#%',
+    'current'   => max(1, get_query_var('paged')),
+    'total'     => $wp_query->max_num_pages,
+    'type'      => 'array', // 配列形式でリンクを取得
+    'prev_text' => '&laquo;',
+    'next_text' => '&raquo;',
+  ));
+
+  if (is_array($pagination)) {
+    echo '<nav aria-label="ページネーション" class="mt-5">';
+    echo '<ul class="pagination justify-content-center">';
+
+    foreach ($pagination as $page) {
+      // 現在のページには 'active' クラスを付加
+      $class = strpos($page, 'current') !== false ? ' active' : '';
+      echo '<li class="page-item' . $class . '">';
+      echo str_replace('page-numbers', 'page-link', $page);
+      echo '</li>';
+    }
+
+    echo '</ul>';
+    echo '</nav>';
+  }
 }
